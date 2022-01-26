@@ -1,34 +1,53 @@
 import { StatusBar } from 'expo-status-bar';
+import { useEffect, useState } from 'react'
+import * as Font from 'expo-font'
 import {
   Alert, StyleSheet, Text, View,
 } from 'react-native';
 import { setJSExceptionHandler, setNativeExceptionHandler } from 'react-native-exception-handler';
 
-const errorHandler = (e, isFatal) => {
-  if (isFatal) {
-    Alert.alert(
-      'Unexpected error occurred',
-      `Error: ${isFatal ? 'Fatal:' : ''} ${e.name} ${
-        e.message
-      }. Please close the app and start again!`,
-      [
-        {
-          text: 'Close',
-        },
-      ],
-    );
-  } else {
-    console.log(e); // So that we can see it in the ADB logs in case of Android if needed
-  }
-};
+// const errorHandler = (e, isFatal) => {
+//   if (isFatal) {
+//     Alert.alert(
+//       'Unexpected error occurred',
+//       `Error: ${isFatal ? 'Fatal:' : ''} ${e.name} ${
+//         e.message
+//       }. Please close the app and start again!`,
+//       [
+//         {
+//           text: 'Close',
+//         },
+//       ],
+//     );
+//   } else {
+//     console.log(e); // So that we can see it in the ADB logs in case of Android if needed
+//   }
+// };
 
-setJSExceptionHandler(errorHandler, true);
+// setJSExceptionHandler(errorHandler, true);
 
-setNativeExceptionHandler((errorString) => {
-  console.log('setNativeExceptionHandler', errorString);
-});
+// setNativeExceptionHandler((errorString) => {
+//   console.log('setNativeExceptionHandler', errorString);
+// });
 
 export default function App() {
+  const [isFontLoaded, setIsFontLoaded] = useState(false)
+  useEffect(() => {
+    Font.loadAsync({
+      'OverPassRegular': require('./assets/fonts/overpass_regular.ttf'),
+      'OverPassBold': require('./assets/fonts/overpass_bold.ttf')
+    }).then(() => setIsFontLoaded(true))
+
+    return () => {
+      setIsFontLoaded(false)
+    }
+
+  }, [])
+
+  if (!isFontLoaded) {
+    return <View />
+  }
+
   return (
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>

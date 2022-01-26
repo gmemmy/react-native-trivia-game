@@ -15,7 +15,7 @@ function Quiz({ navigation }: NavigationProps) {
     score: 0,
     answers: []
   })
-  const { isLoading, isError, data, refetch, isRefetching } = useQuery('questions', fetchQuestions)
+  const { isLoading, isError, data, refetch, isRefetching, isSuccess } = useQuery('questions', fetchQuestions)
 
   const question = (data ? data[currentQuestion - 1] : {}) as QuestionProps
 
@@ -65,6 +65,20 @@ function Quiz({ navigation }: NavigationProps) {
           onPress={() => refetch()}
           >
           <Text>Try again</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
+  if (data && data?.length < 1) {
+    return (
+      <View style={[styles.container, { justifyContent: 'center' }]}>
+        <Text style={styles.errorMessage}>There are no currently no questions at this time.</Text>
+        <TouchableOpacity 
+          style={[styles.button, { marginTop: getHeight(20) }]}
+          onPress={() => navigation?.goBack()}
+          >
+          <Text>Go back</Text>
         </TouchableOpacity>
       </View>
     )

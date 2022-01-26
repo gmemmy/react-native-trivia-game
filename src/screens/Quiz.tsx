@@ -86,7 +86,13 @@ function Quiz({ navigation }: NavigationProps) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.headerText}>{question?.category}</Text>
+      <Animatable.Text 
+        style={styles.headerText}
+        ref={questionRef}
+        animation="fadeIn"
+      >
+        {question?.category}
+      </Animatable.Text>
       <View style={styles.contentWrapper}>
         <View style={styles.boxWrapper}>
           <Animatable.Text ref={questionRef} style={styles.question} animation="fadeIn">

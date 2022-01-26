@@ -1,11 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
+import { StatusBar } from 'expo-status-bar'
 import { useEffect, useState } from 'react'
 import * as Font from 'expo-font'
 import {
   Alert, StyleSheet, Text, View,
 } from 'react-native';
-import { setJSExceptionHandler, setNativeExceptionHandler } from 'react-native-exception-handler';
+import { setJSExceptionHandler, setNativeExceptionHandler } from 'react-native-exception-handler'
 import Navigator from './src/navigator/navigator'
+import { QueryClientProvider } from 'react-query'
+import { queryClient } from './src/rq'
 
 // const errorHandler = (e, isFatal) => {
 //   if (isFatal) {
@@ -50,7 +52,9 @@ export default function App() {
   }
 
   return (
-    <Navigator />
+    <QueryClientProvider client={queryClient}>
+      <Navigator />
+    </QueryClientProvider>
   );
 }
 

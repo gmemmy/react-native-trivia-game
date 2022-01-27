@@ -9,7 +9,7 @@ https://user-images.githubusercontent.com/36506774/151260938-450d2170-a398-4723-
 
 1. Clone this repository unto your local machine:
 ```
-git clone https://github.com/gmemmy/g21-react-native-test.git
+https://github.com/gmemmy/react-native-trivia-game.git
 ```
 2. Install dependencies
 ```

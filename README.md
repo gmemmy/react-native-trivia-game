@@ -1,4 +1,4 @@
-# g21-react-native-test
+# react-native-trivia-game
 
 The app is live here - https://expo.dev/@gmemmy/g2i-test
 

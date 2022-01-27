@@ -1,6 +1,6 @@
 # react-native-trivia-game
 
-The app is live here - https://expo.dev/@gmemmy/g2i-test
+The app is live here - https://expo.dev/@gmemmy/trivia-game
 
 ## Here is a video demo
 https://user-images.githubusercontent.com/36506774/151260938-450d2170-a398-4723-b0fe-f5a2411b1cc2.mp4

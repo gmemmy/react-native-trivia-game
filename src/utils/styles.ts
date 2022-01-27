@@ -1,7 +1,9 @@
-   import {
+  import { StyleSheet } from 'react-native'
+  import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
+import { themeColors } from './theme'
 
 const main: any = {
   h_1: hp('0.123%'),
@@ -40,10 +42,15 @@ const getComputed = (value: number, type: string) => {
 export const getWidth = (value: number) => getComputed(value, 'w')
 export const getHeight = (value: number) => getComputed(value, 'h')
 
-export const fontFamily: { 
-  FONT_FAMILY_REGULAR: string, 
-  FONT_FAMILY_BOLD: string 
-} = {
-  FONT_FAMILY_REGULAR: 'OverPassRegular',
-  FONT_FAMILY_BOLD: 'OverPassBold'
-}
+export const defaultStyles = StyleSheet.create({
+  screenContainer: {
+    flex: 1,
+    backgroundColor: themeColors.primarySurface,
+    alignItems: 'center',
+  },
+  defaultHeader: {
+    fontSize: getWidth(24),
+    textAlign: 'center',
+    fontWeight: '700'
+  }
+})

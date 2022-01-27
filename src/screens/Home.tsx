@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { fontFamily, getHeight, getWidth } from '../utils/styles'
+import { defaultStyles, getHeight, getWidth } from '../utils/styles'
 
 function Home({ navigation }: NavigationProps) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerWrapper}>
-        <Text style={styles.headerText}>Welcome to the Trivia Challenge!</Text>
+        <Text style={defaultStyles.defaultHeader}>Welcome to the Trivia Challenge!</Text>
       </View>
       <View style={styles.contentBody}>
         <Text style={styles.contentText}>You will be presented with 10 True or False questions.</Text>
@@ -22,15 +22,8 @@ function Home({ navigation }: NavigationProps) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#E0E0E0',
-    alignItems: 'center',
+    ...defaultStyles.screenContainer,
     paddingBottom: Platform.OS === 'android' ? getHeight(60) : 0
-  },
-  headerText: {
-    fontSize: getWidth(24),
-    textAlign: 'center',
-    fontWeight: '700'
   },
   headerWrapper: {
     width: getWidth(200),

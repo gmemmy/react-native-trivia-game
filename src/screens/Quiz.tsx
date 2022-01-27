@@ -4,7 +4,8 @@ import * as Animatable from 'react-native-animatable'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useQuery } from 'react-query'
 import { fetchQuestions } from '../api'
-import { getHeight, getWidth } from '../utils/styles'
+import { defaultStyles, getHeight, getWidth } from '../utils/styles'
+import { themeColors } from '../utils/theme'
 
 const AnimatedButton = Animatable.createAnimatableComponent(TouchableOpacity)
 
@@ -37,7 +38,7 @@ function Quiz({ navigation }: NavigationProps) {
     const isAnswerCorrect = question?.correct_answer === res
     setResult({
       ...result, 
-      score: isAnswerCorrect ? result.score + 1 : result.score,
+      score: isAnswerCorrect ? ++result.score  : result.score,
       answers: [
         ...result.answers,
         {
@@ -51,7 +52,7 @@ function Quiz({ navigation }: NavigationProps) {
   if (isLoading || isRefetching) {
     return (
       <View style={[styles.container, { justifyContent: 'center' }]}>
-        <ActivityIndicator size={50} color="#000" />
+        <ActivityIndicator size={50} color={themeColors.black} />
       </View>
     )
   }
@@ -87,7 +88,7 @@ function Quiz({ navigation }: NavigationProps) {
   return (
     <SafeAreaView style={styles.container}>
       <Animatable.Text 
-        style={styles.headerText}
+        style={defaultStyles.defaultHeader}
         ref={questionRef}
         animation="fadeIn"
       >
@@ -122,21 +123,14 @@ function Quiz({ navigation }: NavigationProps) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#E0E0E0',
-    alignItems: 'center',
+    ...defaultStyles.screenContainer,
     paddingHorizontal: getWidth(30)
-  },
-  headerText: {
-    fontSize: getWidth(24),
-    textAlign: 'center',
-    fontWeight: '700'
   },
   boxWrapper: {
     height: getHeight(300),
     width: '100%',
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: '#000',
+    borderColor: themeColors.black,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: getWidth(40)
@@ -167,7 +161,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: '#000',
+    borderColor: themeColors.black,
   },
   errorMessage: {
     textAlign: 'center',

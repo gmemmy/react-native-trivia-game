@@ -3,7 +3,8 @@ import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 import { FlatList } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { getHeight, getWidth } from '../utils/styles'
+import { defaultStyles, getHeight, getWidth } from '../utils/styles'
+import { themeColors } from '../utils/theme'
 
 
 const ListItem = ({ item }: { item: Answer}) => {
@@ -22,8 +23,8 @@ function Results({ navigation, route }: NavigationProps) {
   const { score, numOfQuestions, answers } = route?.params
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.headerText}>You scored</Text>
-      <Text style={styles.headerText}>{score} / {numOfQuestions}</Text>
+      <Text style={defaultStyles.defaultHeader}>You scored</Text>
+      <Text style={defaultStyles.defaultHeader}>{score} / {numOfQuestions}</Text>
       <FlatList
         showsVerticalScrollIndicator={false}
         data={answers}
@@ -46,15 +47,8 @@ function Results({ navigation, route }: NavigationProps) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#E0E0E0',
-    alignItems: 'center',
+    ...defaultStyles.screenContainer,
     paddingBottom: Platform.OS === 'android' ? getHeight(40) : 0
-  },
-  headerText: {
-    fontSize: getWidth(24),
-    textAlign: 'center',
-    fontWeight: '700'
   },
   button: {
     marginTop: 'auto'
@@ -71,11 +65,11 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: getWidth(18),
     marginLeft: getWidth(20),
-    color: '#828282'
+    color: themeColors.gray
   },
   itemSign: {
     fontSize: getWidth(30),
-    color: '#828282'
+    color: themeColors.gray
   }
 })
 
